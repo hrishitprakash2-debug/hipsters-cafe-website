@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteInfo } from "@/data/siteInfo";
 import ThemeToggle from "@/components/ui/ThemeToggle";
@@ -14,13 +14,30 @@ const navLinks = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setOpen(false);
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-stone-950/80 backdrop-blur-lg border-b border-amber-500/10">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-stone-950/95 backdrop-blur-xl border-b border-amber-500/10 shadow-lg shadow-black/20"
+          : "bg-transparent"
+      }`}
+    >
       <nav className="max-w-7xl mx-auto flex items-center justify-between h-14 sm:h-16 px-3 sm:px-6">
         <a href="#home" className="font-playfair text-base sm:text-xl font-bold text-amber-400 flex items-center gap-1.5 sm:gap-2">
           <span className="text-lg sm:text-2xl">☕</span>
@@ -36,9 +53,14 @@ export default function Header() {
             </button>
           ))}
           <ThemeToggle />
-          <button onClick={() => scrollTo("menu")} className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-amber-500/25 transition-all">
+          <motion.button
+            onClick={() => scrollTo("menu")}
+            className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-amber-500/25 transition-all"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             Order Now
-          </button>
+          </motion.button>
         </div>
         <button className="md:hidden text-amber-200/80 p-1" onClick={() => setOpen(!open)} aria-label="Menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -48,7 +70,12 @@ export default function Header() {
       </nav>
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="md:hidden overflow-hidden bg-stone-950/95 border-t border-amber-500/10">
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden overflow-hidden bg-stone-950/95 backdrop-blur-xl border-t border-amber-500/10"
+          >
             <div className="flex flex-col px-4 py-3 gap-2">
               {navLinks.map((l) => (
                 <button key={l.id} onClick={() => scrollTo(l.id)} className="text-left text-sm font-medium text-amber-200/70 hover:text-amber-400 py-2">
@@ -65,6 +92,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

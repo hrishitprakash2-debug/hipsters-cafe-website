@@ -7,13 +7,13 @@ import SectionWrapper from "@/components/ui/SectionWrapper";
 export default function Contact() {
   return (
     <SectionWrapper id="contact" className="bg-stone-950">
-      <div className="text-center mb-16">
+      <div className="text-center mb-10 sm:mb-16">
         <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">📍 Visit Us</span>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-amber-50 mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-amber-50 mb-4">
           Come Say <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Hello</span>
         </h2>
       </div>
-      <div className="grid lg:grid-cols-2 gap-12">
+      <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
         <motion.div {...slideInLeft} className="space-y-6">
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
             <h3 className="text-xl font-bold text-amber-50 mb-4">🕐 Opening Hours</h3>

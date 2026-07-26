@@ -12,9 +12,9 @@ export default function Gallery() {
   return (
     <SectionWrapper id="gallery" className="bg-gradient-to-b from-stone-950 to-amber-950">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">📸 Gallery</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-amber-50 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-amber-50 mb-4">
             A Peek Into <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Our World</span>
           </h2>
         </div>

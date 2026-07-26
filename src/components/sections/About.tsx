@@ -7,10 +7,10 @@ export default function About() {
   return (
     <SectionWrapper id="about" className="bg-gradient-to-b from-amber-950 to-stone-950">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
           <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <p className="text-amber-400 font-medium tracking-widest uppercase text-sm mb-3">☕ Our Story</p>
-            <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-amber-50 mb-6">Welcome to<br /><span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">{siteInfo.name}</span></h2>
+            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-amber-50 mb-6">Welcome to<br /><span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">{siteInfo.name}</span></h2>
             <p className="text-amber-200/60 leading-relaxed mb-4">
               Founded by <span className="text-amber-400 font-semibold">{siteInfo.founders[0].handle}</span> and <span className="text-amber-400 font-semibold">{siteInfo.founders[1].handle}</span>, our cafe blends classic cuisine with a modern twist, all set within charming retro interiors.
             </p>

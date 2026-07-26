@@ -7,9 +7,9 @@ import SectionWrapper from "@/components/ui/SectionWrapper";
 export default function Features() {
   return (
     <SectionWrapper id="features" className="bg-gradient-to-b from-amber-950 to-stone-950">
-      <div className="text-center mb-16">
+      <div className="text-center mb-10 sm:mb-16">
         <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">✨ Why Us</span>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-amber-50 mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-amber-50 mb-4">
           More Than Just a <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Cafe</span>
         </h2>
         <p className="text-lg text-amber-200/60 max-w-2xl mx-auto">We&apos;re a community hub where food, creativity, and good vibes come together.</p>

@@ -11,14 +11,14 @@ export default function Reviews() {
 
   return (
     <SectionWrapper id="reviews" className="bg-gradient-to-b from-amber-950 to-stone-950">
-      <div className="text-center mb-16">
+      <div className="text-center mb-10 sm:mb-16">
         <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">💬 Reviews</span>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-amber-50 mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-amber-50 mb-4">
           What People <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Say</span>
         </h2>
       </div>
 
-      <div className="hidden md:block mb-16">
+      <div className="hidden md:block mb-10 sm:mb-16">
         <div className="relative max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div key={idx} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.4 }} className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 text-center">

@@ -1,32 +1,29 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 
 const reviews = [
   {
-    name: "MAYANK GOYAL",
-    text: "One of the best places in Ghaziabad. Its our always go to place. Love their open mic sessions. Kudos!",
+    name: "Mayank Goyal",
+    text: "One of the best places in Ghaziabad. Its our always go to place/adda. Love their open mic sessions. Kudos!",
     rating: 5,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mayank&backgroundColor=b6e3f4",
-    color: "bg-red-600",
-    rotate: "-2deg",
+    source: "Google",
+    avatar: "https://api.dicebear.com/7.x/initials/svg?seed=MG&backgroundColor=d97706&textColor=ffffff",
   },
   {
-    name: "SHAINI TYAGI",
+    name: "Shaini Tyagi",
     text: "Nice cafe with good atmosphere. Ordered hot chocolate and schezwan momos. Tasty food and great ambiance.",
     rating: 5,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Shaini&backgroundColor=ffdfbf",
-    color: "bg-red-500",
-    rotate: "1deg",
+    source: "Google",
+    avatar: "https://api.dicebear.com/7.x/initials/svg?seed=ST&backgroundColor=dc2626&textColor=ffffff",
   },
   {
-    name: "GAURIC SAXENA",
-    text: "Delicious food, great ambience, lovely decor and definitely soothing music. This place is a must visit!",
+    name: "Gauric Saxena",
+    text: "Delicious food, great ambience, lovely decor and definitely soothing music. A must visit for youngsters and families alike.",
     rating: 5,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Gauric&backgroundColor=c0aede",
-    color: "bg-red-700",
-    rotate: "-1deg",
+    source: "Google",
+    avatar: "https://api.dicebear.com/7.x/initials/svg?seed=GS&backgroundColor=7c3aed&textColor=ffffff",
   },
 ];
 
@@ -37,127 +34,92 @@ export default function Reviews() {
     offset: ["start end", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const card1Y = useTransform(scrollYProgress, [0, 1], ["40%", "-30%"]);
-  const card2Y = useTransform(scrollYProgress, [0, 1], ["60%", "-10%"]);
-  const card3Y = useTransform(scrollYProgress, [0, 1], ["80%", "10%"]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const card1Y = useTransform(scrollYProgress, [0.1, 0.9], ["50%", "-40%"]);
+  const card2Y = useTransform(scrollYProgress, [0.1, 0.9], ["70%", "-20%"]);
+  const card3Y = useTransform(scrollYProgress, [0.1, 0.9], ["90%", "0%"]);
+  const cardYs = [card1Y, card2Y, card3Y];
 
   return (
-    <section id="reviews" ref={containerRef} className="relative min-h-[120vh] overflow-hidden">
-      {/* Background Image */}
+    <section id="reviews" ref={containerRef} className="relative overflow-hidden" style={{ minHeight: "140vh" }}>
+      {/* Parallax Background */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img
-          src="https://images.unsplash.com/photo-1529543544282-ea95407407db?w=1920&h=1080&fit=crop"
-          alt="Happy customers at cafe"
-          className="w-full h-[120%] object-cover"
+          src="https://images.unsplash.com/photo-1529543544282-ea95407407db?w=1920&h=1200&fit=crop&q=80"
+          alt="Happy people at cafe"
+          className="w-full h-[130%] object-cover"
+          loading="lazy"
         />
-        <div className="absolute inset-0 bg-stone-950/60" />
+        <div className="absolute inset-0 bg-stone-950/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-950 via-transparent to-stone-950" />
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-        <div className="text-center mb-16">
-          <motion.span
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+        {/* Header */}
+        <div className="text-center mb-16 sm:mb-24">
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium mb-6 backdrop-blur-sm"
+            className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-3"
           >
-            💬 Reviews
-          </motion.span>
+            Testimonials
+          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-white"
+            className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight"
           >
-            What People <span className="text-amber-400">Say</span>
+            What Our Guests<br />
+            <span className="text-amber-400">Are Saying</span>
           </motion.h2>
         </div>
 
-        {/* Scrolling Cards */}
-        <div className="relative max-w-4xl mx-auto h-[500px] sm:h-[600px]">
-          {/* Card 1 */}
-          <motion.div
-            style={{ y: card1Y, rotate: -2 }}
-            className="absolute top-0 left-0 sm:left-[5%] w-full sm:w-[420px]"
-          >
-            <div className={`${reviews[0].color} rounded-2xl p-6 sm:p-8 shadow-2xl`}>
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={reviews[0].avatar}
-                  alt={reviews[0].name}
-                  className="w-14 h-14 rounded-full bg-white border-2 border-white/20"
-                />
-                <div>
-                  <div className="flex gap-0.5 mb-1">
-                    {Array.from({ length: reviews[0].rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-white text-white" />
-                    ))}
+        {/* Stacked Review Cards */}
+        <div className="relative max-w-md mx-auto" style={{ height: "500px" }}>
+          {reviews.map((review, i) => {
+            const rotations = [-2, 1.5, -1];
+            return (
+              <motion.div
+                key={i}
+                style={{ y: cardYs[i], rotate: rotations[i] }}
+                className="absolute inset-x-0"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+              >
+                <div className="bg-stone-900/90 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl">
+                  <Quote className="w-8 h-8 text-amber-400/30 mb-4" />
+                  <p className="font-playfair text-lg sm:text-xl italic text-amber-100 leading-relaxed mb-6">
+                    &ldquo;{review.text}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={review.avatar}
+                      alt={review.name}
+                      className="w-10 h-10 rounded-full"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p className="text-white font-semibold text-sm">{review.name}</p>
+                      <div className="flex items-center gap-2">
+                        <div className="flex gap-0.5">
+                          {Array.from({ length: review.rating }).map((_, j) => (
+                            <Star key={j} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                          ))}
+                        </div>
+                        <span className="text-amber-200/40 text-xs">{review.source}</span>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-white font-bold tracking-wider text-sm">{reviews[0].name}</p>
                 </div>
-              </div>
-              <p className="text-white/90 text-lg sm:text-xl font-playfair italic leading-relaxed">
-                &ldquo;{reviews[0].text}&rdquo;
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 2 */}
-          <motion.div
-            style={{ y: card2Y, rotate: 1 }}
-            className="absolute top-32 sm:top-40 right-0 sm:right-[5%] w-full sm:w-[420px]"
-          >
-            <div className={`${reviews[1].color} rounded-2xl p-6 sm:p-8 shadow-2xl`}>
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={reviews[1].avatar}
-                  alt={reviews[1].name}
-                  className="w-14 h-14 rounded-full bg-white border-2 border-white/20"
-                />
-                <div>
-                  <div className="flex gap-0.5 mb-1">
-                    {Array.from({ length: reviews[1].rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-white text-white" />
-                    ))}
-                  </div>
-                  <p className="text-white font-bold tracking-wider text-sm">{reviews[1].name}</p>
-                </div>
-              </div>
-              <p className="text-white/90 text-lg sm:text-xl font-playfair italic leading-relaxed">
-                &ldquo;{reviews[1].text}&rdquo;
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 3 */}
-          <motion.div
-            style={{ y: card3Y, rotate: -1 }}
-            className="absolute top-64 sm:top-80 left-[10%] sm:left-[15%] w-full sm:w-[420px]"
-          >
-            <div className={`${reviews[2].color} rounded-2xl p-6 sm:p-8 shadow-2xl`}>
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={reviews[2].avatar}
-                  alt={reviews[2].name}
-                  className="w-14 h-14 rounded-full bg-white border-2 border-white/20"
-                />
-                <div>
-                  <div className="flex gap-0.5 mb-1">
-                    {Array.from({ length: reviews[2].rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-white text-white" />
-                    ))}
-                  </div>
-                  <p className="text-white font-bold tracking-wider text-sm">{reviews[2].name}</p>
-                </div>
-              </div>
-              <p className="text-white/90 text-lg sm:text-xl font-playfair italic leading-relaxed">
-                &ldquo;{reviews[2].text}&rdquo;
-              </p>
-            </div>
-          </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
